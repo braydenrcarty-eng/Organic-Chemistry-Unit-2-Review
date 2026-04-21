@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Unit 2 Review — Chirality, Alkyl Halides, Alcohols & Substitution</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+
+  :root {
+    --ink: #1c1c2e;
+    --cream: #faf8f3;
+    --warm: #f5f0e8;
+    --s1: #8b2252;
+    --s2: #1a5276;
+    --s3: #1a6b3a;
+    --s4: #7d4e00;
+    --s5: #4a235a;
+    --accent: #c0392b;
+    --gold: #b7860b;
+    --border: #ddd5c8;
+    --revealed-bg: #eaf7ee;
+    --revealed-border: #5dade2;
+    --revealed-text: #1a4a2e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: white;
+    padding: 3rem 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(139,34,82,0.18);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(26,82,118,0.15);
+  }
+  header .inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+  header .unit-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem;
+  }
+  header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+  }
+  header h1 em { color: #e8a0b0; font-style: normal; }
+  header .subtitle {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  header .subtitle span { display: flex; align-items: center; gap: 0.3rem; }
+
+  /* TOC */
+  .toc {
+    max-width: 900px;
+    margin: 1.8rem auto;
+    padding: 0 1.5rem;
+  }
+  .toc-inner {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.4rem 1.5rem;
+  }
+  .toc-title {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    grid-column: 1 / -1;
+    margin-bottom: 0.4rem;
+  }
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.88rem;
+    padding: 0.2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.15s;
+  }
+  .toc a:hover { color: var(--accent); }
+  .toc a .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* WRAPPER */
+  .wrapper { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+  /* SECTION */
+  .section {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .section-head {
+    padding: 1.1rem 1.5rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-head .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    opacity: 0.3;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .section-head h2 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; }
+  .section-head p { font-size: 0.8rem; opacity: 0.8; margin-top: 0.15rem; }
+
+  .s1 .section-head { background: var(--s1); }
+  .s2 .section-head { background: var(--s2); }
+  .s3 .section-head { background: var(--s3); }
+  .s4 .section-head { background: var(--s4); }
+  .s5 .section-head { background: var(--s5); }
+
+  /* CONCEPT BOX */
+  .concept {
+    margin: 1.1rem 1.4rem 0.5rem;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+  .s1 .concept { background: #fdf0f4; border-left: 3px solid var(--s1); }
+  .s2 .concept { background: #eef5fb; border-left: 3px solid var(--s2); }
+  .s3 .concept { background: #eef8f2; border-left: 3px solid var(--s3); }
+  .s4 .concept { background: #fdf5e6; border-left: 3px solid var(--s4); }
+  .s5 .concept { background: #f5eefa; border-left: 3px solid var(--s5); }
+  .concept strong { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; color: #777; margin-bottom: 0.35rem; }
+
+  /* QUESTIONS */
+  .questions { padding: 0.6rem 1.4rem 1.4rem; }
+  .q-group { margin-bottom: 1.2rem; }
+  .q-group-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #aaa;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0.7rem;
+  }
+
+  .question {
+    margin: 0.7rem 0;
+    padding: 0.85rem 1rem;
+    border: 1px solid #ece8e2;
+    border-radius: 7px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    background: var(--warm);
+    transition: border-color 0.2s;
+  }
+  .question:hover { border-color: #c8c0b4; }
+  .q-num { font-weight: 700; color: #888; margin-right: 0.3rem; }
+
+  .hint-btn {
+    float: right;
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border: 1px solid #d0c8be;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    color: #999;
+    margin-left: 0.5rem;
+    transition: background 0.15s;
+  }
+  .hint-btn:hover { background: #f0ebe4; color: #666; }
+  .hint-text {
+    display: none;
+    margin-top: 0.45rem;
+    font-size: 0.82rem;
+    color: #7a5c00;
+    background: #fffde7;
+    border: 1px solid #ffe082;
+    padding: 0.4rem 0.7rem;
+    border-radius: 5px;
+    clear: both;
+  }
+
+  .answer-space {
+    margin-top: 0.5rem;
+    border: 1px dashed #c8c0b4;
+    border-radius: 5px;
+    padding: 0.45rem 0.7rem;
+    min-height: 2rem;
+    background: white;
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: #bbb;
+    transition: all 0.2s;
+    display: block;
+    clear: both;
+  }
+  .answer-space:hover { background: #f5f2ed; color: #999; }
+  .answer-space.revealed {
+    background: var(--revealed-bg);
+    border: 1px solid var(--revealed-border);
+    color: var(--revealed-text);
+    font-style: italic;
+    cursor: default;
+    white-space: pre-line;
+  }
+  .answer-content { display: none; }
+
+  /* MULTIPLE CHOICE */
+  .mc-opts { margin-top: 0.5rem; padding-left: 0.8rem; clear: both; }
+  .mc-opts label { display: block; margin: 0.25rem 0; font-size: 0.875rem; cursor: pointer; transition: color 0.15s; }
+  .mc-opts input { margin-right: 0.4rem; }
+  .mc-opts label.correct { color: #1a6b3a; font-weight: 600; }
+  .mc-opts label.wrong { color: #c0392b; text-decoration: line-through; opacity: 0.7; }
+
+  /* FORMULA BOX */
+  .formula-box {
+    font-family: 'Georgia', serif;
+    background: #f8f5f0;
+    border: 1px solid #ddd5c8;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin: 0.4rem 0;
+    font-size: 0.9rem;
+    color: var(--ink);
+    display: inline-block;
+  }
+
+  /* CHALLENGE */
+  .challenge-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    background: var(--gold);
+    color: white;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+
+  /* TIMER */
+  .timer-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: #e0d8d0; z-index: 200; }
+  .timer-fill { height: 100%; background: linear-gradient(90deg, var(--s1), var(--s2), var(--s3)); transition: width 1s linear; }
+  .timer-widget {
+    position: fixed; bottom: 1.5rem; right: 1.5rem;
+    background: var(--ink); color: white;
+    padding: 0.65rem 1.1rem; border-radius: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    cursor: pointer; display: flex; align-items: center; gap: 0.5rem;
+    z-index: 99; font-size: 0.95rem;
+    transition: transform 0.15s;
+  }
+  .timer-widget:hover { transform: scale(1.04); }
+  .timer-sub { font-size: 0.7rem; opacity: 0.6; }
+
+  /* TIME GUIDE */
+  .time-guide {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .time-guide h3 { font-family: 'Playfair Display', serif; margin-bottom: 0.8rem; font-size: 1rem; }
+  .tg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.7rem; }
+  .tg-card { text-align: center; padding: 0.7rem; border-radius: 6px; border: 1px solid #ece8e2; }
+  .tg-time { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; }
+  .tg-label { font-size: 0.72rem; color: #888; margin-top: 0.15rem; }
+
+  @media (max-width: 600px) {
+    header { padding: 2rem 1.2rem 1.5rem; }
+    .wrapper, .toc { padding: 0 1rem; }
+    .wrapper { padding-bottom: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="timer-bar"><div class="timer-fill" id="timerFill" style="width:100%"></div></div>
+
+<header>
+  <div class="inner">
+    <div class="unit-label">Honors Chemistry · Unit 2 Review</div>
+    <h1>Chirality, <em>Alkyl Halides,</em><br>Alcohols &amp; Substitution</h1>
+    <div class="subtitle">
+      <span>⏱ ~60 minutes</span>
+      <span>📋 5 sections</span>
+      <span>✦ 32 questions</span>
+      <span>Click any answer box to reveal</span>
+    </div>
+  </div>
+</header>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-inner">
+    <div class="toc-title">Contents</div>
+    <a href="#s1"><span class="dot" style="background:var(--s1)"></span>Chirality, Enantiomers &amp; Optical Activity</a>
+    <a href="#s2"><span class="dot" style="background:var(--s2)"></span>R/S Nomenclature &amp; Fischer Projections</a>
+    <a href="#s3"><span class="dot" style="background:var(--s3)"></span>Alkyl Halides &amp; Alcohols — Naming</a>
+    <a href="#s4"><span class="dot" style="background:var(--s4)"></span>Carbocations &amp; Preparation of Alkyl Halides</a>
+    <a href="#s5"><span class="dot" style="background:var(--s5)"></span>SN1 &amp; SN2 Mechanisms</a>
+  </div>
+</div>
+
+<div class="wrapper">
+
+<!-- ═══════════════ SECTION 1 ═══════════════ -->
+<div class="section s1" id="s1">
+  <div class="section-head">
+    <div class="num">1</div>
+    <div>
+      <h2>Chirality, Enantiomers &amp; Optical Activity</h2>
+      <p>Mirror images · superimposability · chirality centers · polarimetry</p>
+    </div>
+  </div>
+  <div class="concept">
+    <strong>Key Concepts</strong>
+    A chiral object cannot be superimposed on its mirror image (like hands). A chiral center is a carbon bonded to four chemically distinct groups. Enantiomers = non-superimposable mirror images. Diastereomers = stereoisomers that are NOT mirror images. Optical activity: chiral substances rotate plane-polarized light; measured with a polarimeter using [α] = α / (c × l).
+  </div>
+  <div class="questions">
+
+    <div class="q-group">
+      <div class="q-group-title">Conceptual / Short Answer</div>
+
+      <div class="question">
+        <span class="q-num">1.</span> Explain in your own words why a pair of hands is considered chiral, while a plain sphere is achiral. Use these examples to define the term "non-superimposable."
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">Try overlaying a left glove on a right glove. What happens? Now try it with a ball.</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Your left hand and right hand are mirror images of each other, but no matter how you rotate or slide them, you cannot make them perfectly overlap (one palm always faces down when the other faces up). This makes them non-superimposable — you cannot place one object on top of the other so that all features coincide simultaneously. A sphere, however, has no distinguishing features; any orientation of its mirror image looks identical to the original, so it is superimposable on its mirror image and therefore achiral.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">2.</span> A carbon atom has four bonds. Under what specific condition does it become a chirality center? Give an example of a carbon that is NOT a chiral center and explain why.
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">Think about what "chemically distinct" means — what if two of the four groups are identical?</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">A carbon becomes a chirality center only when all four groups bonded to it are chemically distinct from each other — no two groups are the same. Example of a non-chiral carbon: the central carbon of propane (CH₃–CH₂–CH₃) has two CH₃ groups attached, meaning two of its four substituents are identical. Because two groups are the same, swapping them produces an identical, superimposable molecule — so it cannot be a chirality center.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">3.</span> Distinguish between enantiomers and diastereomers. A molecule has two chirality centers with configuration (2R,3S). What is the configuration of its enantiomer? What would be an example of a diastereomer of this molecule?
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">Enantiomers = all centers inverted. Diastereomers = only some centers inverted.</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Enantiomers are non-superimposable mirror images of each other — they have opposite configurations at ALL chirality centers. Diastereomers are stereoisomers that are NOT mirror images — they have opposite configuration at only some (not all) chirality centers.
+For (2R,3S): its enantiomer is (2S,3R) — every center is inverted. A diastereomer would be (2R,3R) or (2S,3S) — only one center is inverted, producing a stereoisomer that is neither a mirror image nor the same compound.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">4.</span> What is optical activity, and why must a substance be chiral AND have an excess of one enantiomer to be optically active? What would you observe in a polarimeter for a racemic mixture?
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Optical activity is the ability of a substance to rotate the plane of plane-polarized light. A substance must be chiral because only asymmetric molecules interact differently with left- and right-circularly polarized light. However, chirality alone is not enough — if equal amounts of both enantiomers are present (a racemic mixture, 50/50), the rotations from each enantiomer are equal and opposite, canceling each other out. The net observed rotation is zero. In a polarimeter, a racemic mixture would show α = 0°, appearing optically inactive despite being composed of chiral molecules.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">5.</span> Using the optical activity equation, calculate the specific rotation [α] for a sample with an observed rotation of +4.5°, a concentration of 0.5 g/mL, in a 2.0 dm polarimeter tube.
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">[α] = α / (c × l). Make sure l is in decimeters!</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">[α] = α / (c × l) = +4.5 / (0.5 g/mL × 2.0 dm) = +4.5 / 1.0 = +4.5°.
+The specific rotation is +4.5° (positive = dextrorotatory, rotates light clockwise). Note: the tube length must be in decimeters (1 dm = 10 cm), and concentration in g/mL.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">6.</span> Two molecules are stereoisomers with the same molecular formula and connectivity. Molecule A has specific rotation [α] = +32°. Molecule B has [α] = –32°. What is the relationship between A and B? What would the specific rotation of a 50/50 mixture of A and B be?
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Molecules A and B are enantiomers. They have equal but opposite specific rotations — a hallmark of enantiomeric pairs. Every other physical property (melting point, boiling point, solubility) is identical for enantiomers in an achiral environment; only the direction of rotation of polarized light differs.
+A 50/50 mixture (racemic mixture) would have a specific rotation of 0° — the +32° rotation from A is exactly canceled by the –32° rotation from B.</div>
+      </div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-title">Multiple Choice</div>
+
+      <div class="question">
+        <span class="q-num">7.</span> Which of the following best describes diastereomers?
+        <div class="mc-opts" id="mc1">
+          <label><input type="radio" name="mc1" value="a" onclick="checkMC(this,'mc1','c')"> A) Non-superimposable mirror images</label>
+          <label><input type="radio" name="mc1" value="b" onclick="checkMC(this,'mc1','c')"> B) Molecules with the same structural formula and connectivity</label>
+          <label><input type="radio" name="mc1" value="c" onclick="checkMC(this,'mc1','c')"> C) Stereoisomers that are not mirror images of each other</label>
+          <label><input type="radio" name="mc1" value="d" onclick="checkMC(this,'mc1','c')"> D) Molecules that are superimposable on their mirror images</label>
+        </div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">C) Diastereomers are stereoisomers with the same molecular formula and connectivity but different spatial arrangements — and critically, they are NOT mirror images of each other. They arise when a molecule has two or more chirality centers and the configurations at only some (not all) centers are inverted. They have different physical and chemical properties from each other, unlike enantiomers which share most properties.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SECTION 2 ═══════════════ -->
+<div class="section s2" id="s2">
+  <div class="section-head">
+    <div class="num">2</div>
+    <div>
+      <h2>R/S Nomenclature &amp; Fischer Projections</h2>
+      <p>CIP priority rules · clockwise/counterclockwise · wedge-dash · Fischer cross</p>
+    </div>
+  </div>
+  <div class="concept">
+    <strong>Key Concepts</strong>
+    Assign priorities 1–4 to substituents by atomic number (higher = higher priority). At double bonds, count the bonded atom twice. With priority group 4 pointing away, if 1→2→3 sweeps clockwise = R; counterclockwise = S. If group 4 points toward you, invert your assignment. Fischer projections: horizontal bonds come toward viewer (wedge); vertical bonds go away (dash).
+  </div>
+  <div class="questions">
+
+    <div class="q-group">
+      <div class="q-group-title">Conceptual / Short Answer</div>
+
+      <div class="question">
+        <span class="q-num">8.</span> State the three CIP priority rules used to rank substituents at a chirality center, and explain how a double bond is treated when assigning priorities.
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Rule 1: Higher atomic number takes higher priority. (e.g., Br > Cl > O > N > C > H).
+Rule 2: When two atoms directly bonded to the chirality center are the same element, compare the atoms attached to them. The substituent with the higher atomic number atom at the next level gets higher priority (compare atom-by-atom at each shell).
+Rule 3: At a double bond, treat it as if each doubly-bonded atom is bonded to a phantom duplicate of the other. For example, C=O is treated as C bonded to (O, O, ...) and O bonded to (C, C, ...). This allows double bonds to be ranked using the same atomic number rules.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">9.</span> Assign priorities to the four groups attached to the chiral carbon in (S)-2-bromobutane: Br, CH₂CH₃, CH₃, and H. Then explain how you determine the configuration is S.
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">Priority by atomic number: Br (35) > C > C > H (1). For the two carbons, compare what they're bonded to.</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Priority ranking: 1 = Br (highest atomic number, 35). 2 = CH₂CH₃ (ethyl group — C bonded to C, H, H). 3 = CH₃ (methyl — C bonded to H, H, H; fewer carbons attached than ethyl). 4 = H (lowest, atomic number 1).
+To assign R/S: mentally orient the molecule so group 4 (H) points directly away from you (into the page). Then trace a curved arrow from group 1 → 2 → 3. If this sweeps counterclockwise, the configuration is S. For this molecule, the counterclockwise sweep of Br → CH₂CH₃ → CH₃ confirms the S designation.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">10.</span> In a Fischer projection, what do the horizontal and vertical lines represent in terms of 3D structure? If the lowest-priority group is on a horizontal bond in a Fischer projection, how do you correctly determine R or S?
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">Horizontal = coming toward you (wedge). If group 4 points toward you, your observed rotation needs to be inverted.</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">In a Fischer projection: horizontal lines represent bonds coming toward the viewer (equivalent to wedge bonds — the substituents project out of the page). Vertical lines represent bonds going away from the viewer (equivalent to dash bonds — the substituents go into the page).
+If the lowest-priority group (4) is on a horizontal bond, it is pointing toward you — the opposite of what you need for direct R/S assignment (which requires group 4 pointing away). In this case, determine the apparent rotation from groups 1→2→3, then invert it: if it appears clockwise, the true configuration is S; if counterclockwise, it is R.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">11.</span> Two molecules have configurations (2R,3R) and (2S,3R). Identify their stereochemical relationship and explain your reasoning using the R/S system.
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">They are diastereomers. The enantiomer of (2R,3R) would be (2S,3S) — every chirality center inverted. In (2S,3R), only C2 has been inverted while C3 remains R. Since the configurations are not mirror images of each other (not all centers inverted), these molecules are diastereomers — stereoisomers with different physical and chemical properties that are not related as object and mirror image.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">12.</span> <span class="challenge-label">Challenge</span> A molecule contains a C=O group (carbonyl). When assigning CIP priorities to substituents on an adjacent chirality center, explain how the carbonyl carbon and oxygen are each treated using the phantom atom rule.
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">At a C=O double bond, each atom "pretends" it is bonded to a duplicate of its partner. The carbonyl carbon (C) is treated as if it has an extra phantom O atom attached, making it equivalent to C bonded to (O, O, other substituents). The carbonyl oxygen (O) is treated as if it has an extra phantom C atom, making it equivalent to O bonded to (C, C). When ranking substituents, a –CHO group has its carbon counted as bonded to (O, O, H) via the phantom rule, giving it higher priority than, say, –CH₂OH where carbon is bonded to (O, H, H). This allows the standard atomic-number priority rules to handle double bonds without a separate rule.</div>
+      </div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-title">Multiple Choice</div>
+
+      <div class="question">
+        <span class="q-num">13.</span> For a chirality center with groups F, Cl, Br, and H: what is the correct priority order from highest to lowest?
+        <div class="mc-opts" id="mc2">
+          <label><input type="radio" name="mc2" value="a" onclick="checkMC(this,'mc2','b')"> A) F > Cl > H > Br</label>
+          <label><input type="radio" name="mc2" value="b" onclick="checkMC(this,'mc2','b')"> B) Br > Cl > F > H</label>
+          <label><input type="radio" name="mc2" value="c" onclick="checkMC(this,'mc2','b')"> C) Cl > Br > F > H</label>
+          <label><input type="radio" name="mc2" value="d" onclick="checkMC(this,'mc2','b')"> D) F > Cl > Br > H</label>
+        </div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">B) Br (atomic number 35) > Cl (17) > F (9) > H (1). Priority is assigned strictly by atomic number — higher atomic number = higher priority. Even though F is the most electronegative halogen, electronegativity is irrelevant here; only atomic number counts in CIP rules.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SECTION 3 ═══════════════ -->
+<div class="section s3" id="s3">
+  <div class="section-head">
+    <div class="num">3</div>
+    <div>
+      <h2>Alkyl Halides &amp; Alcohols — Naming</h2>
+      <p>Halogen nomenclature · alcohol suffix (-ol) · locant rules · hydroxyl priority</p>
+    </div>
+  </div>
+  <div class="concept">
+    <strong>Key Concepts</strong>
+    Alkyl halides: named as halo-substituents (fluoro-, chloro-, bromo-, iodo-) with locants. Halogens and alkyl groups have equal rank — use lowest locant set. Alcohols: named with -ol suffix; OH outranks halogens and alkyl groups for numbering (gives OH the lowest possible locant). Remove -e from parent alkane and add -ol. For cyclic compounds, the carbon bearing OH is C1.
+  </div>
+  <div class="questions">
+
+    <div class="q-group">
+      <div class="q-group-title">Naming Practice</div>
+
+      <div class="question">
+        <span class="q-num">14.</span> Name the following molecule and explain your numbering choice: a 5-carbon chain with a bromine on C2 and a methyl group on C4. Write the name two ways — numbering from each end — and identify which is correct.
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">Br and methyl have equal rank. Compare the locant sets from each direction.</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">From the left end: Br at C2, methyl at C4 → locant set {2,4}.
+From the right end: methyl at C2, Br at C4 → locant set {2,4}.
+The sets are tied at the first locant! Apply the tiebreaker: at the first point of difference, choose the direction that gives the lower number to the substituent that comes first alphabetically. Bromo (b) comes before methyl (m), so give Br the lower number. Correct name: 2-bromo-4-methylpentane (Br at C2).</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">15.</span> Name the following alcohol: a 7-carbon chain with an OH group on C3 and a methyl branch on C6. Explain why the OH group gets priority in numbering.
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">OH outranks all substituents for numbering — it always gets the lowest possible locant regardless of alkyl groups.</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Name: 6-methyl-3-heptanol. The OH group must receive the lowest possible locant because hydroxyl outranks alkyl groups (and halogen groups) in IUPAC alcohol nomenclature. Numbering from the OH end gives OH at C3 and methyl at C6, vs. OH at C5 and methyl at C2 from the other end. Since {3,6} gives a lower first locant for OH than {2,5} gives for methyl, we number to give OH the lowest number regardless of the methyl: 6-methyl-3-heptanol.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">16.</span> Name the following compound: a cyclopentane ring with an OH group on C1 and a Cl on C2, where the two substituents are on opposite sides of the ring.
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">The ring carbon bearing OH = C1. Add stereochemistry descriptor for the relative configuration.</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">trans-2-chlorocyclopentan-1-ol. The ring carbon bearing –OH is C1 (OH has highest priority for numbering). Cl is on the adjacent carbon C2. Numbering goes in the direction that gives Cl the lower locant (C2 rather than C5). Opposite sides of the ring = trans. The name is written as trans-2-chlorocyclopentan-1-ol (or trans-2-chloro-1-cyclopentanol in older notation).</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">17.</span> A student names the compound CH₃CH(OH)CH₂CH₂CH₃ as "2-hydroxy-pentane." What is wrong with this name, and what is the correct IUPAC name?
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Two errors: (1) "Hydroxy" is not the correct suffix for naming alcohols — the IUPAC method uses the suffix -ol, not a substituent prefix, when the OH group is the principal characteristic group. (2) "Pentane" should become "pentanol." The correct IUPAC name is 2-pentanol (or pentan-2-ol in modern IUPAC format). The -e ending of pentane is replaced with -ol, and the locant 2 indicates the position of the OH group. Numbering from the OH end gives position 2 (vs. position 4 from the other end), confirming 2-pentanol is correct.</div>
+      </div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-title">Multiple Choice</div>
+
+      <div class="question">
+        <span class="q-num">18.</span> Which of the following is the correct IUPAC name for a 6-carbon chain with OH at C2 and Cl at C4?
+        <div class="mc-opts" id="mc3">
+          <label><input type="radio" name="mc3" value="a" onclick="checkMC(this,'mc3','b')"> A) 4-chloro-5-hexanol</label>
+          <label><input type="radio" name="mc3" value="b" onclick="checkMC(this,'mc3','b')"> B) 4-chlorohexan-2-ol</label>
+          <label><input type="radio" name="mc3" value="c" onclick="checkMC(this,'mc3','b')"> C) 3-chlorohexan-5-ol</label>
+          <label><input type="radio" name="mc3" value="d" onclick="checkMC(this,'mc3','b')"> D) 2-hydroxy-4-chlorohexane</label>
+        </div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">B) 4-chlorohexan-2-ol. The OH group gets the lowest possible locant (C2 rather than C5), so we number from the OH end. This places OH at C2 and Cl at C4. The name is built as: parent chain hexane → add -ol → hexanol → locant for OH: hexan-2-ol → add chloro at C4 → 4-chlorohexan-2-ol. Option D uses "hydroxy" as a prefix rather than the correct -ol suffix, so it is incorrect IUPAC nomenclature.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SECTION 4 ═══════════════ -->
+<div class="section s4" id="s4">
+  <div class="section-head">
+    <div class="num">4</div>
+    <div>
+      <h2>Carbocations &amp; Preparation of Alkyl Halides</h2>
+      <p>Carbocation stability · primary/secondary/tertiary · rearrangement · reaction mechanism steps</p>
+    </div>
+  </div>
+  <div class="concept">
+    <strong>Key Concepts</strong>
+    Carbocations: positively charged carbon with only 3 bonds. Stability: methyl &lt; primary &lt; secondary &lt; tertiary (more alkyl groups = more hyperconjugation/inductive electron donation = more stable). Preparation of alkyl halides from alcohols + HX proceeds in 3 steps: (1) fast proton transfer to OH → oxonium ion, (2) slow ionization → carbocation + H₂O, (3) fast nucleophilic capture by halide ion. Carbocation rearrangements (hydride or methyl shifts) occur when a more stable carbocation can form nearby.
+  </div>
+  <div class="questions">
+
+    <div class="q-group">
+      <div class="q-group-title">Conceptual / Short Answer</div>
+
+      <div class="question">
+        <span class="q-num">19.</span> Rank the following carbocations from least to most stable and explain the reason for the trend: CH₃⁺ (methyl), (CH₃)₂CH⁺ (isopropyl/secondary), CH₃CH₂⁺ (ethyl/primary), (CH₃)₃C⁺ (tert-butyl/tertiary).
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">More alkyl groups attached to the positive carbon = more stable. Why? Think about electron donation.</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Least → most stable: CH₃⁺ &lt; CH₃CH₂⁺ &lt; (CH₃)₂CH⁺ &lt; (CH₃)₃C⁺.
+The trend exists because alkyl groups are electron-donating — they push electron density toward the positively charged carbon, partially stabilizing the positive charge through inductive effects and hyperconjugation (overlap of adjacent C–H sigma bonds with the empty p orbital on the carbocation). More alkyl groups = greater electron donation = better stabilization of the positive charge = more stable carbocation. The tert-butyl cation has three methyl groups donating electrons, making it the most stable of these four.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">20.</span> Describe the three steps in the mechanism for converting tert-butyl alcohol to tert-butyl chloride using HCl. Identify which step is rate-determining and why.
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">One step is labeled "slow" in the mechanism. The slow step determines the overall rate.</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Step 1 (fast): Proton transfer. HCl donates H⁺ to the oxygen of tert-butyl alcohol, forming a protonated alcohol (tert-butyloxonium ion) and a chloride ion (Cl⁻). This is fast because it is a simple acid-base proton transfer.
+Step 2 (slow — rate-determining): The C–O bond breaks. The water molecule departs, forming the tert-butyl carbocation (a stable tertiary carbocation) and water. This step is slow because it requires breaking a bond and forming a high-energy intermediate.
+Step 3 (fast): Cl⁻ (nucleophile) attacks the positively charged carbocation, forming the C–Cl bond and yielding tert-butyl chloride.
+Step 2 is rate-determining because it is the slowest step and involves the formation of the carbocation intermediate — this controls the overall reaction rate (hence SN1 kinetics depend only on the substrate concentration).</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">21.</span> 3,3-Dimethyl-2-butanol reacts with HCl to give 2-chloro-2,3-dimethylbutane rather than 3-chloro-3,3-dimethylbutane (the product you might expect from direct substitution). Explain this result using carbocation rearrangement.
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">Draw the initial carbocation. Is it secondary or tertiary? Can a methyl shift give something more stable?</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">3,3-Dimethyl-2-butanol loses water to initially form a secondary carbocation at C2. A secondary carbocation is less stable than a tertiary one. Adjacent to C2 is C3, which bears three methyl groups. A 1,2-methyl shift occurs: one methyl group migrates from C3 to C2, transferring the positive charge from the secondary C2 to the now tertiary C3. The resulting tertiary carbocation at C3 is more stable. Cl⁻ then attacks C3, giving 2-chloro-2,3-dimethylbutane. The driving force is the gain in stability going from a secondary to a tertiary carbocation — carbocations always rearrange if a more stable carbocation can be reached by a 1,2-shift.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">22.</span> Why does the reactivity order of alcohols with HX follow tertiary > secondary > primary? Connect this to carbocation stability in your answer.
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">The rate-determining step in this reaction (SN1 mechanism) is the formation of the carbocation after protonation of the OH group. Tertiary alcohols form tertiary carbocations, secondary form secondary, and primary form primary. Since tertiary carbocations are the most stable (three electron-donating alkyl groups dispersing the positive charge), they form most easily — requiring the least activation energy. Secondary carbocations are moderately stable; primary carbocations are very unstable and difficult to form. Therefore: tertiary alcohol reacts fastest (most stable carbocation), primary alcohol reacts slowest (least stable, nearly inaccessible carbocation).</div>
+      </div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-title">Multiple Choice</div>
+
+      <div class="question">
+        <span class="q-num">23.</span> Which of the following correctly lists the reactivity of hydrogen halides with alcohols, from most reactive to least reactive?
+        <div class="mc-opts" id="mc4">
+          <label><input type="radio" name="mc4" value="a" onclick="checkMC(this,'mc4','c')"> A) HF > HCl > HBr > HI</label>
+          <label><input type="radio" name="mc4" value="b" onclick="checkMC(this,'mc4','c')"> B) HCl > HBr > HI > HF</label>
+          <label><input type="radio" name="mc4" value="c" onclick="checkMC(this,'mc4','c')"> C) HI > HBr > HCl > HF</label>
+          <label><input type="radio" name="mc4" value="d" onclick="checkMC(this,'mc4','c')"> D) HBr > HI > HF > HCl</label>
+        </div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">C) HI > HBr > HCl > HF. The reactivity of hydrogen halides matches their acid strength — stronger acids are better proton donors (step 1 of the mechanism) and their conjugate base halide ions are better nucleophiles (step 3). HI is the strongest acid and I⁻ is the best nucleophile; HF is the weakest acid and F⁻ is the poorest nucleophile for this reaction. HF is so unreactive that it generally does not convert alcohols to alkyl fluorides under normal conditions.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SECTION 5 ═══════════════ -->
+<div class="section s5" id="s5">
+  <div class="section-head">
+    <div class="num">5</div>
+    <div>
+      <h2>SN1 &amp; SN2 Mechanisms</h2>
+      <p>Nucleophilic substitution · stereochemistry · rate laws · solvent effects</p>
+    </div>
+  </div>
+  <div class="concept">
+    <strong>Key Concepts</strong>
+    SN1: unimolecular (rate depends only on substrate). Two steps: carbocation forms, then nucleophile attacks from either face → racemic mixture at chiral center. Favored by tertiary substrates and polar protic solvents. SN2: bimolecular (rate depends on substrate AND nucleophile). One concerted step: nucleophile attacks the back face as leaving group departs → inversion of configuration (Walden inversion). Favored by primary/secondary substrates and polar aprotic solvents. Polar protic = can donate H-bonds (O–H or N–H present; e.g., water, ethanol). Polar aprotic = cannot donate H-bonds (no O–H or N–H; e.g., DMSO, acetone, DMF).
+  </div>
+  <div class="questions">
+
+    <div class="q-group">
+      <div class="q-group-title">Conceptual / Short Answer</div>
+
+      <div class="question">
+        <span class="q-num">24.</span> Compare and contrast the SN1 and SN2 mechanisms in terms of: (a) number of steps, (b) rate law, (c) stereochemical outcome, and (d) best substrate type.
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">(a) Steps: SN1 = two steps (carbocation intermediate then nucleophile attack). SN2 = one concerted step (simultaneous bond breaking and forming, no intermediate).
+(b) Rate law: SN1 rate = k[substrate] (first order — only substrate concentration matters; nucleophile is not in rate law). SN2 rate = k[substrate][nucleophile] (second order — both concentrations matter).
+(c) Stereochemistry: SN1 produces a racemic mixture (or mixture of stereoisomers) because the planar carbocation intermediate can be attacked from either face equally. SN2 produces inversion of configuration at the reaction center (Walden inversion) because the nucleophile must attack from the back face, opposite the leaving group.
+(d) Substrate: SN1 favors tertiary (stable carbocation). SN2 favors primary (least steric hindrance for backside attack); secondary can go either way depending on conditions.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">25.</span> Why does SN2 require backside attack on the substrate carbon? Draw/describe the transition state geometry. What steric effect makes SN2 nearly impossible for tertiary substrates?
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">Think about molecular orbitals — the nucleophile's lone pair must overlap with the antibonding orbital of the C–X bond.</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">SN2 requires backside attack because the nucleophile's lone pair must overlap with the antibonding (σ*) orbital of the C–leaving group bond, which is located on the opposite side of the leaving group. This overlap is only possible from the back face.
+The transition state is pentacoordinate (5 groups around carbon) — the nucleophile is partially bonded on one side while the leaving group is partially detached on the other, with the three remaining substituents arranged in a flat (trigonal planar) configuration at 90° to the reaction axis (like an umbrella inverting).
+For tertiary substrates, the three bulky alkyl groups surrounding the reaction center create severe steric hindrance — they physically block the nucleophile from approaching the back face. This steric crowding makes backside attack essentially impossible, so tertiary substrates cannot undergo SN2.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">26.</span> A student reacts (R)-2-bromobutane with NaOH (a nucleophile) in DMSO (a polar aprotic solvent). Predict the mechanism (SN1 or SN2), the major product, and its stereochemical configuration. Explain your reasoning for each choice.
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-text">What type of carbon is C2 of 2-bromobutane? What does DMSO tell you about mechanism? What does SN2 do to configuration?</div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Mechanism: SN2. Reasoning: (1) The substrate is secondary (C2 has two alkyl substituents) — secondary can undergo SN2, especially with a good nucleophile. (2) DMSO is a polar aprotic solvent — this strongly favors SN2 by not hydrogen-bonding to the nucleophile (OH⁻ from NaOH stays a potent, unencumbered nucleophile). (3) NaOH is a strong nucleophile.
+Product: (S)-2-butanol. SN2 causes complete inversion of configuration at the reaction center. The starting material is (R), so the product is (S). The –Br leaving group is replaced by –OH with inversion — if OH comes in from the back face, the configuration flips from R to S.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">27.</span> Explain why polar protic solvents favor SN1 but polar aprotic solvents favor SN2. What is the difference between a polar protic and a polar aprotic solvent? Give one example of each.
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Polar protic solvents contain O–H or N–H bonds capable of hydrogen bonding. Examples: water, ethanol, acetic acid. They stabilize the ions formed in SN1 (carbocation and leaving group) through solvation — surrounding and stabilizing the charged species, making ionization easier. However, they also hydrogen-bond to nucleophiles, wrapping them in a solvent shell that reduces their reactivity, which slows SN2.
+Polar aprotic solvents are polar (have a dipole moment) but lack O–H or N–H bonds. Examples: DMSO (dimethyl sulfoxide), acetone, DMF (dimethylformamide). They solvate cations but leave the nucleophile relatively "naked" and highly reactive — perfect for SN2. They do not stabilize carbocations as effectively as protic solvents, so they do not particularly favor SN1.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">28.</span> (R)-3-bromo-3-methylhexane (a chiral tertiary alkyl bromide) undergoes SN1 hydrolysis in water to give a racemic mixture of 3-methyl-3-hexanol. Explain the mechanism step by step and why racemization — not retention or inversion — is the outcome.
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">Step 1: The C–Br bond ionizes to form a tertiary carbocation at C3 and Br⁻. The carbocation is sp²-hybridized and planar — the three substituents (methyl, ethyl, propyl) lie in a plane with an empty p orbital perpendicular to it.
+Step 2: Water attacks the planar carbocation. Because the carbocation intermediate is flat, water can approach with equal ease from either face — there is no steric or electronic preference for one side over the other.
+Step 3: Attack from the top face gives (R)-3-methyl-3-hexanol; attack from the bottom face gives (S)-3-methyl-3-hexanol. Since both faces are attacked equally, the result is a 50/50 racemic mixture — complete loss of optical activity.
+This is the key stereochemical consequence of SN1: formation of a planar carbocation intermediate destroys the original chirality and leads to racemization, not the inversion (SN2) or retention seen in other mechanisms.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">29.</span> <span class="challenge-label">Challenge</span> A primary alkyl halide RCH₂Br reacts slowly with NaI in acetone, while a tertiary alkyl halide R₃CBr reacts not at all under these conditions. However, R₃CBr reacts readily in water alone. Explain each observation using SN1/SN2 theory and solvent effects.
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">RCH₂Br + NaI in acetone → SN2, slow: Primary substrates favor SN2, and acetone (polar aprotic) keeps I⁻ reactive. The reaction is slow because primary substrates still have some steric crowding and the reaction is bimolecular — rate depends on both concentrations. It does proceed because backside attack on a primary carbon is accessible.
+R₃CBr + NaI in acetone → no reaction: Tertiary substrates cannot undergo SN2 due to severe steric hindrance (three bulky R groups block backside attack). NaI cannot displace the bromide via concerted mechanism. And acetone (polar aprotic) does not stabilize the ions needed for SN1 well enough for ionization to occur spontaneously.
+R₃CBr in water → SN1 readily: Water is a polar protic solvent that strongly stabilizes the tertiary carbocation and the Br⁻ leaving group through solvation and hydrogen bonding, lowering the activation energy for ionization. The tertiary substrate forms a very stable carbocation. Water then acts as the nucleophile (hydrolyzes the carbocation). Both conditions favor SN1: tertiary substrate + polar protic solvent.</div>
+      </div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-title">Multiple Choice</div>
+
+      <div class="question">
+        <span class="q-num">30.</span> An SN2 reaction is carried out on (S)-2-iodopentane with CN⁻ as the nucleophile. What is the stereochemical outcome?
+        <div class="mc-opts" id="mc5">
+          <label><input type="radio" name="mc5" value="a" onclick="checkMC(this,'mc5','b')"> A) Retention of configuration — (S)-2-cyanopentane</label>
+          <label><input type="radio" name="mc5" value="b" onclick="checkMC(this,'mc5','b')"> B) Inversion of configuration — (R)-2-cyanopentane</label>
+          <label><input type="radio" name="mc5" value="c" onclick="checkMC(this,'mc5','b')"> C) Racemic mixture of (R)- and (S)-2-cyanopentane</label>
+          <label><input type="radio" name="mc5" value="d" onclick="checkMC(this,'mc5','b')"> D) No reaction occurs because the substrate is secondary</label>
+        </div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">B) Inversion of configuration. SN2 always proceeds with complete inversion at the reaction center (Walden inversion) via backside attack. CN⁻ attacks from the side opposite the –I leaving group, flipping the spatial arrangement of the remaining three groups. Since the starting material is (S), the product after inversion is (R)-2-cyanopentane. Note: the actual R/S designation also depends on the new priority order with –CN replacing –I, which must be re-evaluated, but the physical inversion of the tetrahedral center always occurs.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">31.</span> Which combination of substrate and solvent most strongly favors an SN1 pathway?
+        <div class="mc-opts" id="mc6">
+          <label><input type="radio" name="mc6" value="a" onclick="checkMC(this,'mc6','d')"> A) Primary alkyl halide in DMSO</label>
+          <label><input type="radio" name="mc6" value="b" onclick="checkMC(this,'mc6','d')"> B) Primary alkyl halide in ethanol</label>
+          <label><input type="radio" name="mc6" value="c" onclick="checkMC(this,'mc6','d')"> C) Secondary alkyl halide in acetone</label>
+          <label><input type="radio" name="mc6" value="d" onclick="checkMC(this,'mc6','d')"> D) Tertiary alkyl halide in water</label>
+        </div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">D) Tertiary alkyl halide in water. SN1 is favored by: (1) tertiary substrate (forms stable tertiary carbocation), and (2) polar protic solvent (water — best at stabilizing the developing charges through solvation and hydrogen bonding). Primary substrates rarely form carbocations at all. DMSO and acetone are polar aprotic (favor SN2). Ethanol is polar protic but a primary substrate still can't form a carbocation easily. The combination of tertiary + polar protic is ideal for SN1.</div>
+      </div>
+
+      <div class="question">
+        <span class="q-num">32.</span> <span class="challenge-label">Challenge</span> A secondary alkyl bromide is treated with a strong nucleophile in a polar aprotic solvent. The reaction gives a single stereoisomeric product with inverted configuration. This observation is MOST consistent with which conclusion?
+        <div class="mc-opts" id="mc7">
+          <label><input type="radio" name="mc7" value="a" onclick="checkMC(this,'mc7','c')"> A) The reaction proceeded by SN1 through a carbocation intermediate</label>
+          <label><input type="radio" name="mc7" value="b" onclick="checkMC(this,'mc7','c')"> B) A carbocation rearrangement occurred before nucleophilic capture</label>
+          <label><input type="radio" name="mc7" value="c" onclick="checkMC(this,'mc7','c')"> C) The reaction proceeded by SN2 with backside attack by the nucleophile</label>
+          <label><input type="radio" name="mc7" value="d" onclick="checkMC(this,'mc7','c')"> D) The reaction gave a racemic product because the intermediate is planar</label>
+        </div>
+        <div class="answer-space" onclick="revealAnswer(this)">Click to reveal answer</div>
+        <div class="answer-content">C) SN2 with backside attack. The three key pieces of evidence all point to SN2: (1) a single stereoisomeric product (not a mixture) — SN1 would give racemization or at least a mixture; (2) inverted configuration — the hallmark of SN2 Walden inversion; (3) polar aprotic solvent — specifically favors SN2 by leaving the nucleophile unencumbered. A strong nucleophile in a polar aprotic solvent with a secondary substrate undergoing clean inversion is the textbook signature of an SN2 reaction.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TIME GUIDE -->
+<div class="time-guide">
+  <h3>📊 Suggested Time Per Section</h3>
+  <div class="tg-grid">
+    <div class="tg-card"><div class="tg-time" style="color:var(--s1)">~12 min</div><div class="tg-label">Chirality &amp; Optical Activity</div></div>
+    <div class="tg-card"><div class="tg-time" style="color:var(--s2)">~12 min</div><div class="tg-label">R/S &amp; Fischer Projections</div></div>
+    <div class="tg-card"><div class="tg-time" style="color:var(--s3)">~10 min</div><div class="tg-label">Nomenclature</div></div>
+    <div class="tg-card"><div class="tg-time" style="color:var(--s4)">~12 min</div><div class="tg-label">Carbocations &amp; Preparation</div></div>
+    <div class="tg-card"><div class="tg-time" style="color:var(--s5)">~14 min</div><div class="tg-label">SN1 &amp; SN2 Mechanisms</div></div>
+  </div>
+</div>
+
+<div style="text-align:center; color:#bbb; font-size:0.8rem; padding-bottom:1rem;">
+  Click any answer box to reveal · 💡 for a hint · Timer in bottom-right corner
+</div>
+
+</div><!-- end wrapper -->
+
+<!-- TIMER WIDGET -->
+<div class="timer-widget" onclick="toggleTimer()" id="timerWidget">
+  <span>⏱</span>
+  <div>
+    <div id="timerDisplay">60:00</div>
+    <div class="timer-sub" id="timerStatus">Click to start</div>
+  </div>
+</div>
+
+<script>
+let totalSeconds = 3600, elapsed = 0, timerInterval = null, running = false;
+
+function toggleTimer() {
+  if (running) {
+    clearInterval(timerInterval); running = false;
+    document.getElementById('timerStatus').textContent = 'Paused';
+  } else {
+    timerInterval = setInterval(() => {
+      elapsed++;
+      let remaining = totalSeconds - elapsed;
+      if (remaining <= 0) {
+        clearInterval(timerInterval);
+        document.getElementById('timerDisplay').textContent = 'Time!';
+        document.getElementById('timerStatus').textContent = 'Done';
+        document.querySelector('.timer-fill').style.width = '0%';
+        return;
+      }
+      let m = Math.floor(remaining / 60), s = remaining % 60;
+      document.getElementById('timerDisplay').textContent = `${m}:${s.toString().padStart(2,'0')}`;
+      document.querySelector('.timer-fill').style.width = `${(remaining/totalSeconds)*100}%`;
+    }, 1000);
+    running = true;
+    document.getElementById('timerStatus').textContent = 'Running';
+  }
+}
+
+function revealAnswer(el) {
+  if (el.classList.contains('revealed')) return;
+  const content = el.nextElementSibling;
+  el.classList.add('revealed');
+  el.textContent = content.textContent;
+}
+
+function toggleHint(btn) {
+  const hint = btn.nextElementSibling;
+  hint.style.display = hint.style.display === 'block' ? 'none' : 'block';
+  btn.textContent = hint.style.display === 'block' ? '✕ Hide' : '💡 Hint';
+}
+
+function checkMC(radio, groupId, correct) {
+  const group = document.getElementById(groupId);
+  group.querySelectorAll('label').forEach(label => {
+    const input = label.querySelector('input');
+    if (input.value === correct) label.classList.add('correct');
+    else if (input.checked && input.value !== correct) label.classList.add('wrong');
+  });
+}
+</script>
+</body>
+</html>
